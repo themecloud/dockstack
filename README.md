@@ -46,7 +46,7 @@ host1 $ docker run -d --name mysql -p :3306 -e MYSQL_ROOT_PASSWORD=test mysql
 host1 $ docker exec -ti mysql mysql -u root -ptest -e "CREATE USER 'haproxy_check'@'%'; FLUSH PRIVILEGES;"
 ```
 
-* Launch Nerve with the HOST1_IP to change with the good value
+* Launch Nerve with the correct `HOST1_IP`.
 
 ```
 host1 $ docker run \
@@ -62,7 +62,7 @@ host1 $ docker run \
 
 #### On the second host
 
-* launch Synapse with the correct HOST2_IP value.
+* launch Synapse with the correct `HOST2_IP` value.
 
 ```
 host2 $ docker run \
