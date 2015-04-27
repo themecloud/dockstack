@@ -14,9 +14,23 @@ Both tools use a YAML config file, which is not ideal to use with Docker. A wrap
 
 ## Bootstrap demo
 
-* Install Zookeeper
+#### On the first host
 
-You can easily setup Zookeeper on your host 1 using https://registry.hub.docker.com/u/mbabineau/zookeeper-exhibitor/ This image embed a zookeeper.
+* Launch a Zookeeper instance
+
+You can easily setup Zookeeper on your host 1 using https://registry.hub.docker.com/u/mbabineau/zookeeper-exhibitor/ but you need AWS crendentials because the image store the configuration in a s3 Bucket.
+
+```
+docker run -d --name zookeeper -p 8181:8181 -p 2181:2181 -p 2888:2888 -p 3888:3888 \
+    -e S3_BUCKET=demo-dockstack \
+    -e S3_PREFIX=demo \
+    -e AWS_REGION=eu-west-1 \
+    -e AWS_ACCESS_KEY_ID=YOUR_ID \
+    -e AWS_SECRET_ACCESS_KEY=YOUR_KEY \
+    -e ZK_PASSWORD=pass \
+    -e HOSTNAME=host1 \
+    mbabineau/zookeeper-exhibitor:latest
+```
 
 * Spawn a MySQL container
 
@@ -44,7 +58,9 @@ host1 $ docker run \
 	-s mysql:tcp:mysql:3306:/test
 ```
 
-* On the other host, launch Synapse
+#### On the second host
+
+* launch Synapse
 
 ```
 host2 $ docker run \
