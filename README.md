@@ -6,60 +6,71 @@ DockStack is composed of two tools:
 - Nerve, a service registration daemon that performs health checks https://github.com/airbnb/nerve
 - Synapse, a transparent service discovery framework that proxyfies the connections. It uses HAProxy to proxy the connections https://github.com/airbnb/synapse
 
+## Why ?
+
 Both tools use a YAML config file, which is not ideal to use with Docker. A wrapper script heavily simplifies the generation of this files via CLI.
 
-##Setup
-####Zookeeper
-You can easily setup Zookeeper on your hosts using https://registry.hub.docker.com/u/thefactory/zookeeper-exhibitor/
+## How it works ?
 
-####MySQL
-Any other service will work
+## Bootstrap demo
 
-- Spawn a MySQL container
+* Install Zookeeper
+
+You can easily setup Zookeeper on your host 1 using https://registry.hub.docker.com/u/mbabineau/zookeeper-exhibitor/ This image embed a zookeeper.
+
+* Spawn a MySQL container
+
 ```
 host1 $ docker run -d --name mysql -p :3306 -e MYSQL_ROOT_PASSWORD=test mysql
 ```
-- Create an healt-check user
+
+* Create an healt-check user
+
 ```
 host1 $ docker exec -ti mysql mysql -u root -ptest -e "CREATE USER 'haproxy_check'@'%'; FLUSH PRIVILEGES;"
 ```
-####Nerve
+
+* Launch Nerve
+
 ```
 host1 $ docker run \
-	-ti --rm \ # -d
+	-d --name nerve
 	-v /usr/bin/docker:/usr/bin/docker:ro \
 	-v /lib64/libdevmapper.so.1.02:/lib/libdevmapper.so.1.02:ro \
 	-v /var/run/docker.sock:/var/run/docker.sock \
-	-e SERVICE_HOST=176.31.235.180 \
-	asiragusa/nerve \
-	-d zk://<zookeeper_hosts comma separated>/nerve \
+	-e SERVICE_HOST=HOST1_IP \
+	tcio/dockstack-nerve \
+	-d zk://HOST1_IP:2181/nerve \
 	-s mysql:tcp:mysql:3306:/test
 ```
 
-####Synapse
+* On the other host, launch Synapse
+
 ```
 host2 $ docker run \
-	-ti --rm \ # -d
-	--name synapse
-	asiragusa/synapse
-	-d zk://<zookeeper_hosts comma separated>/nerve \
+	 -d --name synapse
+	tcio/dockstack-synapse
+	-d zk://HOST2_IP:2181/nerve \
 	-s mysql:mysql:/test
 ```
 
-####Testing
-Here the magic happens! (Running a mysql image, as it carries by default mysql-client)
+* Here the magic happens! (Running a mysql image, as it carries by default mysql-client)
+
 ```
-host2 $ docker run -ti --rm --link synapse:db mysql:latest mysql -u root -h db -p
+host2 $ docker run -ti --rm --link synapse:db mysql:latest mysql -u root -h db -ptest
 ```
 
 The connection is proxified transparently by HAProxy
 
 ##TODO
+
 Create more service config files and examples ready to use
 
 ##Authors
+
 - [Alessandro Siragusa](https://github.com/asiragusa)
 - [Yves-Marie Saout](https://github.com/dw33z1lP)
 
 ##Special thanks
+
 To [Jérôme Petazzoni](https://github.com/jpetazzo) for the great idea!
