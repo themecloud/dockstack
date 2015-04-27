@@ -46,11 +46,11 @@ host1 $ docker run -d --name mysql -p :3306 -e MYSQL_ROOT_PASSWORD=test mysql
 host1 $ docker exec -ti mysql mysql -u root -ptest -e "CREATE USER 'haproxy_check'@'%'; FLUSH PRIVILEGES;"
 ```
 
-* Launch Nerve
+* Launch Nerve with the host IP in the parameter
 
 ```
 host1 $ docker run \
-	-d --name nerve
+	-d --name nerve \
 	-v /usr/bin/docker:/usr/bin/docker:ro \
 	-v /lib64/libdevmapper.so.1.02:/lib/libdevmapper.so.1.02:ro \
 	-v /var/run/docker.sock:/var/run/docker.sock \
