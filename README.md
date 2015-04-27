@@ -14,6 +14,8 @@ Both tools use a YAML config file, which is not ideal to use with Docker. A wrap
 
 ## Bootstrap demo
 
+We will create a basic Docker ambassador pattern with two hosts, a Zookeeper, nerve and a MySQL instance on the fist host and Synapse and MySQL client of the second one.
+
 #### On the first host
 
 * Launch a Zookeeper instance
@@ -70,13 +72,11 @@ host2 $ docker run \
 	-s mysql:mysql:/test
 ```
 
-* Here the magic happens! (Running a mysql image, as it carries by default mysql-client)
+* Here the fun happens thanks to Synapse, the magic unicorn (Running a mysql image, as it carries by default mysql-client). The connection is proxified transparently by HAProxy embeded into Synapse.
 
 ```
 host2 $ docker run -ti --rm --link synapse:db mysql:latest mysql -u root -h db -ptest
 ```
-
-The connection is proxified transparently by HAProxy
 
 ## TODO
 
