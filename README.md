@@ -20,7 +20,7 @@ We will create a basic Docker ambassador pattern with two hosts, a Zookeeper, ne
 
 * Launch a Zookeeper instance
 
-You can easily setup Zookeeper on your host 1 using https://registry.hub.docker.com/u/mbabineau/zookeeper-exhibitor/ but you need AWS crendentials because the image store the configuration in a s3 Bucket.
+You can easily setup Zookeeper on your host 1 using https://registry.hub.docker.com/u/mbabineau/zookeeper-exhibitor/ but you need AWS crendentials because the image store the configuration in a s3 Bucket, and in this bucket, you have to create a folder that will be the `S3_PREFIX` parameter.
 
 ```
 docker run -d --name zookeeper -p 8181:8181 -p 2181:2181 -p 2888:2888 -p 3888:3888 \
