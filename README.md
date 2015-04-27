@@ -62,7 +62,7 @@ host1 $ docker run \
 
 #### On the second host
 
-* launch Synapse
+* launch Synapse with the correct HOST2_IP value.
 
 ```
 host2 $ docker run \
@@ -72,7 +72,7 @@ host2 $ docker run \
 	-s mysql:mysql:/test
 ```
 
-* Here the fun happens thanks to Synapse, the magic unicorn (Running a mysql image, as it carries by default mysql-client). The connection is proxified transparently by HAProxy embeded into Synapse.
+* Here the fun happens thanks to Synapse, the magic unicorn. We are Running a mysql image because it carries by default mysql-client. The connection is proxified transparently by HAProxy embeded into Synapse.
 
 ```
 host2 $ docker run -ti --rm --link synapse:db mysql:latest mysql -u root -h db -ptest
