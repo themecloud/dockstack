@@ -84,8 +84,8 @@ Create more service config files and examples ready to use
 
 ## Upstream links:
 
-Docker Registry @ tcio/dockstack-nerve tcio/dockstack-synapse 
-GitHub @ themecloud/Dockstack
+* Docker Registry @ tcio/dockstack-nerve tcio/dockstack-synapse 
+* GitHub @ themecloud/Dockstack
 
 ## Authors
 
