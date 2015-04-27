@@ -1,0 +1,13 @@
+{
+  "haproxy": {
+    "port": 5672,
+    "server_options": "check inter 2s rise 3 fall 2 on-marked-down shutdown-sessions",
+    "listen": [
+      "mode tcp",
+      "option tcp-check",
+      "timeout client 1d",
+      "timeout server 1d"
+    ]
+  }
+}
+
