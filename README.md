@@ -66,8 +66,8 @@ host1 $ docker run \
 
 ```
 host2 $ docker run \
-	 -d --name synapse
-	tcio/dockstack-synapse
+	 -d --name synapse \
+	tcio/dockstack-synapse \
 	-d zk://HOST2_IP:2181/nerve \
 	-s mysql:mysql:/test
 ```
