@@ -62,13 +62,13 @@ host1 $ docker run \
 
 #### On the second host
 
-* launch Synapse with the correct `HOST2_IP` value.
+* launch Synapse with the correct `HOST1_IP` value to have the zookeeper configuration, the instance is on host1.
 
 ```
 host2 $ docker run \
 	 -d --name synapse \
 	tcio/dockstack-synapse \
-	-d zk://HOST2_IP:2181/nerve \
+	-d zk://HOST1_IP:2181/nerve \
 	-s mysql:mysql:/test
 ```
 
