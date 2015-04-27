@@ -21,7 +21,7 @@ host1 $ docker run -d --name mysql -p :3306 -e MYSQL_ROOT_PASSWORD=test mysql
 ```
 - Create an healt-check user
 ```
-host1 $ docker exec -ti mysql mysql -u root -p -e 'CREATE USER 'haproxy_check'@'%'; FLUSH PRIVILEGES;'
+host1 $ docker exec -ti mysql mysql -u root -ptest -e "CREATE USER 'haproxy_check'@'%'; FLUSH PRIVILEGES;"
 ```
 ####Nerve
 ```
