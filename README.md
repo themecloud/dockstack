@@ -4,9 +4,9 @@ Scaling a web infrastructure requires services, and building a service-oriented 
 
 Smartstack is composed of two tools:
 - [Nerve](https://github.com/airbnb/nerve), a service registration daemon that performs health checks, It uses zookeeper or etcd (WIP) as discovery service.
-- [Synapse](https://github.com/airbnb/nerve), a transparent service discovery framework that proxyfies the connections. It uses HAProxy to proxy the connections.
+- [Synapse](https://github.com/airbnb/synapse), a transparent service discovery framework that proxyfies the connections. It uses HAProxy to proxy the connections.
 
-DockStack is a Docker ambassador based on Smartack. Don't know yet what is this the docker ambassador pattern ? Check the [documentation](http://docs.docker.com/articles/ambassador_pattern_linking/)
+DockStack is a Docker ambassador based on Smartack. Don't know yet what is this the docker ambassador pattern ? Check the [documentation](http://docs.docker.com/articles/ambassador_pattern_linking/).
 
 ## Why ?
 
@@ -29,7 +29,8 @@ We will create a basic Docker ambassador pattern with two hosts, a Zookeeper, ne
 You can easily setup Zookeeper on your host 1 using https://registry.hub.docker.com/u/mbabineau/zookeeper-exhibitor/ but you need AWS crendentials because the image store the configuration in a s3 Bucket, and in this bucket, you have to create a folder that will be the `S3_PREFIX` parameter.
 
 ```
-docker run -d --name zookeeper -p 8181:8181 -p 2181:2181 -p 2888:2888 -p 3888:3888 \
+docker run -d --name zookeeper \
+    -p 8181:8181 -p 2181:2181 -p 2888:2888 -p 3888:3888 \
     -e S3_BUCKET=demo-dockstack \
     -e S3_PREFIX=demo \
     -e AWS_REGION=eu-west-1 \
