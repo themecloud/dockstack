@@ -1,14 +1,16 @@
 #DockStack
 
-DockStack is a Docker ambassador based on [Smartstack](http://nerds.airbnb.com/smartstack-service-discovery-cloud/). It uses zookeeper or etcd (WIP) as discovery service.
+Scaling a web infrastructure requires services, and building a service-oriented infrastructure is hard. With [Smartstack](http://nerds.airbnb.com/smartstack-service-discovery-cloud/) made by AirbnB you can make automated, transparent service discovery and registration: cruise control for your distributed infrastructure.
 
-DockStack is composed of two tools:
-- [Nerve](https://github.com/airbnb/nerve), a service registration daemon that performs health checks 
+Smartstack is composed of two tools:
+- [Nerve](https://github.com/airbnb/nerve), a service registration daemon that performs health checks, It uses zookeeper or etcd (WIP) as discovery service.
 - [Synapse](https://github.com/airbnb/nerve), a transparent service discovery framework that proxyfies the connections. It uses HAProxy to proxy the connections.
+
+DockStack is a Docker ambassador based on Smartack. Don't know yet what is this the docker ambassador pattern ? Check the [documentation](http://docs.docker.com/articles/ambassador_pattern_linking/)
 
 ## Why ?
 
-Both tools use a YAML config file, which is not ideal to use with Docker. A wrapper script heavily simplifies the generation of this files via CLI.
+Both tools use a YAML config file, which is not ideal to use with Docker. A wrapper script heavily simplifies the generation of this files via CLI. Then you can easily make templates in systemd units in order to have auto discovery and auto fail-over for a service cluster.
 
 ## How it works ?
 
