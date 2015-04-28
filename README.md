@@ -12,6 +12,8 @@ Both tools use a YAML config file, which is not ideal to use with Docker. A wrap
 
 ## How it works ?
 
+![schema]()
+
 ## Bootstrap demo
 
 We will create a basic Docker ambassador pattern with two hosts, a Zookeeper, nerve and a MySQL instance on the fist host and Synapse and MySQL client of the second one.
