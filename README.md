@@ -1,10 +1,10 @@
 #DockStack
 
-DockStack is a Docker ambassador based on SmartStack http://nerds.airbnb.com/smartstack-service-discovery-cloud/. It uses zookeeper or etcd (WIP) as discovery service.
+DockStack is a Docker ambassador based on [Smartstack](http://nerds.airbnb.com/smartstack-service-discovery-cloud/). It uses zookeeper or etcd (WIP) as discovery service.
 
 DockStack is composed of two tools:
-- Nerve, a service registration daemon that performs health checks https://github.com/airbnb/nerve
-- Synapse, a transparent service discovery framework that proxyfies the connections. It uses HAProxy to proxy the connections https://github.com/airbnb/synapse
+- [Nerve](https://github.com/airbnb/nerve), a service registration daemon that performs health checks 
+- [Synapse](https://github.com/airbnb/nerve), a transparent service discovery framework that proxyfies the connections. It uses HAProxy to proxy the connections.
 
 ## Why ?
 
