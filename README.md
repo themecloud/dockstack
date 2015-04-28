@@ -12,7 +12,7 @@ Both tools use a YAML config file, which is not ideal to use with Docker. A wrap
 
 ## How it works ?
 
-![schema]()
+![schema](https://raw.githubusercontent.com/themecloud/dockstack/master/dockstack.png)
 
 ## Bootstrap demo
 
