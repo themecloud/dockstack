@@ -35,10 +35,10 @@ docker run \
     -v /usr/bin/docker:/usr/bin/docker:ro \
     -v /lib64/libdevmapper.so.1.02:/lib/libdevmapper.so.1.02:ro \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    -e SERVICE_HOST=45.55.251.103 \
+    -e SERVICE_HOST=HOST1_IP \
     --link rabbitmq:rabbitmq \
     tcio/dockstack-nerve \
-    -d zk://45.55.251.103:2181/nerve \
+    -d zk://HOST1_IP:2181/nerve \
     -s rabbitmq:rabbitmq:rabbitmq:5672:/rabbitmq
 ```
 
@@ -50,7 +50,7 @@ docker run \
 docker run \
      -d --name synapse \
     tcio/dockstack-synapse \
-    -d zk://45.55.251.103:2181/nerve \
+    -d zk://HOST1_IP:2181/nerve \
     -s rabbitmq:rabbitmq:/rabbitmq
 ```
 
