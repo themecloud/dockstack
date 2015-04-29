@@ -1,4 +1,4 @@
-We will create a basic Docker ambassador pattern with two hosts, a Zookeeper, nerve and a RabitMQ instance on the fist host and Synapse and MySQL client of the second one.
+We will create a basic Docker ambassador pattern with two hosts, a Zookeeper, nerve and a HTTP instance on the fist host and Synapse and MySQL client of the second one.
 
 ![ambassador](https://raw.githubusercontent.com/themecloud/dockstack/master/ambassador.jpg)
 
